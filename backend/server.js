@@ -6,7 +6,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
-//const inquiryRoutes = require('./views/inquiry');
+const inquiryRoutes = require('./views/inquiry');
+const userRoutes = require('./views/user');
 
 // Create Express app
 const app = express();
@@ -33,7 +34,7 @@ mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopol
     });
 
 // Routes
-//app.use('/api/products', productRoutes);
-//app.use('/api/user', userRoutes);
+app.use('/api/inquiry', inquiryRoutes);
+app.use('/api/user', userRoutes);
 
 
