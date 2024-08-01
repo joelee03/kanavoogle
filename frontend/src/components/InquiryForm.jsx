@@ -20,12 +20,16 @@ const InquiryForm = () => {
                 },
                 body: JSON.stringify(inquiry)
             });
-    
-            const data = await response.json();
 
             if (!response.ok) {
-                setError(json.error)
+                // If the response is not OK, parse the error message
+                const errorData = await response.json();
+                setError(errorData.error);
+                throw new Error(errorData.error);
             }
+
+            const data = await response.json();
+
             if (response.ok) {
                 setProject('')
                 setName('')
