@@ -8,7 +8,7 @@ require('dotenv').config();
 
 // Import API
 const inquiryRoutes = require('./views/inquiry');
-const userRoutes = require('./views/user');
+//const userRoutes = require('./views/user');
 
 // Create Express app
 const app = express();
@@ -24,7 +24,7 @@ app.use(cors({
 
 // Routes
 app.use('/api/inquiry', inquiryRoutes);
-app.use('/api/user', userRoutes);
+//app.use('/api/user', userRoutes);
 
 // Database connection
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true })

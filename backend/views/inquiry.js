@@ -6,9 +6,9 @@ const {
 const router = express.Router()
 
 //submit an inquiry 
-router.post('/inquiry-post', postInquiry)
+router.post('/', postInquiry)
 
 //get an inquiry 
-router.get('/get-inquiry', getInquiries)
+router.get('/', getInquiries)
 
 module.exports = router

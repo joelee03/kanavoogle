@@ -3,6 +3,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const inquirySchema = new Schema({
+    project: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -18,11 +22,6 @@ const inquirySchema = new Schema({
     },
     details: {
         type: String,
-        required: true
-    },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
         required: true
     }
 }, { timestamps: true })

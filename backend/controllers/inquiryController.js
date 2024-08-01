@@ -1,17 +1,17 @@
 const Inquiry = require('../models/inquiryModel');
-const authenticate = require('../middleware/authMiddleware');
+//const authenticate = require('../middleware/authMiddleware');
 
 // create an inquiry
 const postInquiry = async (req, res) => {
-    const { name, email, service, details } = req.body;
+    const { project, name, email, service, details } = req.body;
 
     try {
         const inquiry = await Inquiry.create({
+            project,
             name,
             email,
             service,
             details,
-            user: req.userId
         });
         res.status(200).json(inquiry);
     } catch (error) {
@@ -22,7 +22,7 @@ const postInquiry = async (req, res) => {
 // retrieve all user inquiries
 const getInquiries = async (req, res) => {
     try {
-        const userInquiries = await Inquiry.find({ user: req.userId }).sort({ createdAt: -1 });
+        const userInquiries = await Inquiry.find({}).sort({ createdAt: -1 });
         res.status(200).json(userInquiries);
     } catch {
         res.status(500).send('Server Error');
