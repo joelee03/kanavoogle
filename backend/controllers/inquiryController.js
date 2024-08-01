@@ -1,6 +1,7 @@
 const Inquiry = require('../models/inquiryModel');
 const authenticate = require('../middleware/authMiddleware');
 
+// create an inquiry
 const postInquiry = async (req, res) => {
     const { name, email, service, details } = req.body;
 
@@ -18,6 +19,7 @@ const postInquiry = async (req, res) => {
     }
 };
 
+// retrieve all user inquiries
 const getInquiries = async (req, res) => {
     try {
         const userInquiries = await Inquiry.find({ user: req.userId }).sort({ createdAt: -1 });

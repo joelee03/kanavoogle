@@ -6,6 +6,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
+// Import API
 const inquiryRoutes = require('./views/inquiry');
 const userRoutes = require('./views/user');
 
@@ -21,6 +22,10 @@ app.use(cors({
     credentials: true
 }));
 
+// Routes
+app.use('/api/inquiry', inquiryRoutes);
+app.use('/api/user', userRoutes);
+
 // Database connection
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -32,9 +37,5 @@ mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopol
     .catch((error) => {
         console.log(error);
     });
-
-// Routes
-app.use('/api/inquiry', inquiryRoutes);
-app.use('/api/user', userRoutes);
 
 
