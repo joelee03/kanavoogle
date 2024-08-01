@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 // components 
 import InquiryDetails from "../components/InquiryDetails";
+import InquiryForm from "../components/InquiryForm";
 
 const Account = () => {
     const [userInquiries, setUserInquiries] =useState(null)
@@ -29,6 +30,7 @@ const Account = () => {
                     <InquiryDetails key={inquiry._id} inquiry={inquiry}/>
                 ))}
             </div>
+            <InquiryForm />
         </div>
     )
 }
