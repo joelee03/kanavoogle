@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const SignupForm = () => {
     const [username, setUsername] = useState('');
@@ -13,7 +13,7 @@ const SignupForm = () => {
         setError(''); // Clear previous errors
 
         try {
-            const response = await fetch('http://localhost:5000/api/user/signup', {
+            const response = await fetch('http://localhost:5050/api/user/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -77,6 +77,12 @@ const SignupForm = () => {
                     >
                         Sign Up
                     </button>
+                    <div className="mt-4 text-center text-sm">
+                        Already have an account?{" "}
+                        <Link to="/login" className="underline">
+                            Sign in
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>
