@@ -21,14 +21,12 @@ const userSchema = new Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema);
-
 userSchema.statics.login = async function(email, password) {
     if (!email || !password) {
         throw Error('All fields must be filled')
     }
     //check email
-    const user = await this.findOne({emaill});
+    const user = await this.findOne({email});
 
     if (!user) {
         throw Error('A ser with the email does not exist');
