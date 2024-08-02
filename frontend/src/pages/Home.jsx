@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate  } from 'react-router-dom'
 import Button from '../ui/button'
+import RedirectButton from '../components/SocialMediaButton';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,6 +24,13 @@ const Home = () => {
           Go to Account
         </Button>
           </div>
+        <div>
+          <h3>Follow Us On</h3>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <RedirectButton platform="LinkedIn" />
+            <RedirectButton platform="Facebook" />
+          </div>
+        </div>
     </div>
   )
 }
