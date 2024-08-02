@@ -10,4 +10,4 @@ function blockchain() {
   )
 }
 
-export default blockchain
+export default blockchain;
