@@ -12,26 +12,26 @@ const Home = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-800">Kanavoogle</h1>
-        </div>
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-gray-800">Kanavoogle</h1>
+      </div>
 
-        <div className="w-full max-w-md">
-        <Button 
-          variant="primary" size="md" onClick={handleNavigation}
-          className="w-full p-3 rounded-full bg-blue-500 text-white font-semibold shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-        >
-          Get Started
-        </Button>
-        </div>
+      <div className="w-full max-w-md">
+      <Button 
+        variant="primary" size="md" onClick={handleNavigation}
+        className="w-full p-3 rounded-full bg-blue-500 text-white font-semibold shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+      >
+        Get Started
+      </Button>
+      </div>
 
-        <div>
-          <h3>Follow Us On</h3>
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <RedirectButton platform="LinkedIn" />
-            <RedirectButton platform="Facebook" />
-          </div>
+      <div>
+        <h3>Follow Us On</h3>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <RedirectButton platform="LinkedIn" />
+          <RedirectButton platform="Facebook" />
         </div>
+      </div>
     </div>
   )
 }
