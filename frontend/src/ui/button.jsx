@@ -11,7 +11,7 @@ const Button = ({ children, onClick, type = 'button', variant = 'primary', size 
     };
     
     const variantStyles = {
-        primary: 'bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-500',
+        primary: 'bg-[#8ABE53] text-white hover:bg-[#7AA647] focus:ring-[#8ABE53]',
         secondary: 'bg-gray-500 text-white hover:bg-gray-600 focus:ring-gray-500',
         danger: 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500',
     };

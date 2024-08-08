@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Lancelot';
+    src: url('./assets/fonts/Lancelot.ttf') format('ttf');
+    font-weight: normal; 
+    font-style: normal; 
+}
