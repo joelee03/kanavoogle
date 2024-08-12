@@ -8,7 +8,7 @@ function Preview() {
       <div className="absolute top-0 left-0 p-4">
         <Link to="/"><img className="h-[5rem] object-cover" src={Icon} alt="kanavoogle Icon"/></Link>
       </div>
-      <div>
+      <div className='top'>
         <h1>We Offer</h1>
       </div>
     </div>
