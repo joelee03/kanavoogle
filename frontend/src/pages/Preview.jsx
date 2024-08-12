@@ -2,8 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Icon from '../assets/webp/icon.webp'
 import Button from '../ui/button'
+import { useNavigate  } from 'react-router-dom'
+
 
 function Preview() {
+  const navigate = useNavigate();
+
+  const handleNavigation = (route) => {
+    console.log('Navigating to:', route);
+      navigate(route); 
+  };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
       <div className="absolute top-0 left-0 p-4">
