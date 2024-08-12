@@ -41,7 +41,7 @@ const Home = () => {
             onClick={() => handleNavigation('/preview')}
             className="w-full p-3 rounded-full text-white items-center justify-center hover:bg-[#7AA647]"
           >
-            End your journey
+            Start your journey
           </Button>
         </div>
         <div className="mt-20" style={{ display: 'flex', gap: '10px' }}>
