@@ -26,7 +26,7 @@ const Home = () => {
           onClick={() => handleNavigation('/signup')}
           className="w-full p-3 rounded-full text-white items-center justify-center hover:bg-[#7AA647]"
         >
-          Preview Services
+          Login
         </Button>
       </div>
 
