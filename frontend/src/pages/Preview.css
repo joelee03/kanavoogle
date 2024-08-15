@@ -21,8 +21,8 @@
   #aboutUs, #novelBlockchain,
   #centurySkills, #montessoriEducation 
    {
-    border-bottom: 1px solid hsla(89, 45%, 54%, 0.823);;
-    background-color: hwb(89 33% 25% / 0.61);
+    border-bottom: 1px solid hsla(89, 31%, 70%, 0.951);;
+    background-color: hwb(89 74% 7% / 0.61);
     padding: 90px;
     display: flex;
     flex-direction: column;
@@ -37,7 +37,7 @@
 /* headerNoLogin */
 header {
     background-color: #ffffff;
-    border-bottom: 1px solid hsla(89, 45%, 54%, 0.823);;
+    border-bottom: 1px solid hsla(89, 31%, 70%, 0.951);;
     z-index: 10;
     color: #000000;
     padding: 10px 0;
