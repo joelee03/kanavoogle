@@ -13,7 +13,7 @@ const HeaderNoLogin = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY; // Get the current scroll position
-      const maxScroll = 750; // The scroll position at which the header is fully faded
+      const maxScroll = 1000; // The scroll position at which the header is fully faded
       const newOpacity = 1 - (scrollTop / maxScroll); // Calculate the new opacity
       setOpacity(Math.max(newOpacity, 0)); // Ensure opacity doesn't go below 0
     };

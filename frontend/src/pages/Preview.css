@@ -17,11 +17,12 @@
     line-height: 2;
     font-size: 1.2rem;
   }
+
   #aboutUs, #novelBlockchain,
   #centurySkills, #montessoriEducation 
    {
     border-bottom: 1px solid hsla(89, 45%, 54%, 0.823);;
-    background-color: hsla(89, 45%, 54%, 0.61);
+    background-color: hwb(89 33% 25% / 0.61);
     padding: 90px;
     display: flex;
     flex-direction: column;
@@ -36,6 +37,7 @@
 /* headerNoLogin */
 header {
     background-color: #ffffff;
+    border-bottom: 1px solid hsla(89, 45%, 54%, 0.823);;
     z-index: 10;
     color: #000000;
     padding: 10px 0;
