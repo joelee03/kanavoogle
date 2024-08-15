@@ -33,3 +33,12 @@
 #signUpButton {
     margin: 30px;
  }
+
+ /* headerNoLogin */
+
+ header {
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+ }
