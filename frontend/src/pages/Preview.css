@@ -14,31 +14,75 @@
 
 #container p{
     align-items: center;
-    line-height: 1.9;
+    line-height: 2;
+    font-size: 1.2rem;
   }
-#container div{
-    padding: 40px;
+  #aboutUs, #novelBlockchain,
+  #centurySkills, #montessoriEducation 
+   {
+    border-bottom: 1px solid hsla(89, 45%, 54%, 0.823);;
+    background-color: hsla(89, 45%, 54%, 0.61);
+    padding: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+#signUpButton {
+    margin-top: 20px;
+    padding: 30px 0px;
+ }
+
+/* headerNoLogin */
+header {
+    background-color: #ffffff;
+    z-index: 10;
+    color: #000000;
+    padding: 10px 0;
+    top: 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    transition: opacity 0.3s ease-in-out; /* Smooth transition for the fading effect */
+}
+
+#nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+.navlinks {
+    display: flex;
+    gap: 20px;
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+
+
+/* footer */
+footer {
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    padding: 0px 0px 15px;
+    bottom: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-  #novelBlockchain,
-  #centurySkills, #montessoriEducation 
-   {
-    border-bottom: 1px solid hsla(89, 45%, 54%, 0.823);;
-    background-color: hsla(89, 45%, 54%, 0.61);
-  }
+#footer_text {
+    padding: 20px 0px 15px 0px;
+    }
 
-#signUpButton {
-    margin: 30px;
- }
-
- /* headerNoLogin */
-
- header {
-    max-width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
- }
+#footersociallinks{
+    padding: 15px 0px;
+    
+    }
