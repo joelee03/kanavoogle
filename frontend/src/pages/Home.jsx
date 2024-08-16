@@ -2,7 +2,8 @@ import React from 'react'
 import { useNavigate  } from 'react-router-dom'
 import Button from '../ui/button'
 import RedirectButton from '../components/SocialMediaButton';
-import Logo from '../assets/webp/main_logo.webp'
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
 
 
 const Home = () => {
@@ -15,21 +16,7 @@ const Home = () => {
 
   return (
     <div className="relative font-custom flex flex-col justify-center items-center w-full h-screen overflow-hidden">
-      <div className="absolute top-0 left-0 p-4">
-        <img className="h-[5rem] object-cover" src={Logo} alt="kanavoogle logo" />
-      </div>
-
-      <div className="absolute top-0 right-0 p-8">
-        <Button 
-          variant="primary"
-          size="md"
-          onClick={() => handleNavigation('/signup')}
-          className="w-full p-3 rounded-full text-white items-center justify-center hover:bg-[#7AA647]"
-        >
-          Login
-        </Button>
-      </div>
-
+      <Navbar />
       <div className="flex flex-col items-center text-center">
         <h1 className="text-[2.7rem] text-[#096A2E] font-custom mb-20">
           Education and Project Management Consultant
@@ -41,13 +28,10 @@ const Home = () => {
             onClick={() => handleNavigation('/preview')}
             className="w-full p-3 rounded-full text-white items-center justify-center hover:bg-[#7AA647]"
           >
-            Start your journey
+            Get started
           </Button>
         </div>
-        <div className="mt-20" style={{ display: 'flex', gap: '10px' }}>
-          <RedirectButton platform="LinkedIn" />
-          <RedirectButton platform="Facebook" />
-        </div>
+        <Footer />
       </div>
     </div>
   )

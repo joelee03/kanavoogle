@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Button = ({ children, onClick, type = 'button', variant = 'primary', size = 'md', disabled = false }) => {
-    const baseStyles = 'font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-150';
+    const baseStyles = 'font-semibold rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-150';
     
     const sizeStyles = {
         sm: 'px-3 py-1 text-sm',
