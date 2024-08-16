@@ -8,14 +8,17 @@ const ProtectedRoute = () => {
   useEffect(() => {
     const verifyToken = async () => {
       try {
+        console.log('Verifying token...');
         const response = await fetch('http://localhost:5050/api/user/verify-token', {
           method: 'GET',
           credentials: 'include',
         });
-
+  
         if (response.ok) {
+          console.log('Token verified successfully');
           setIsAuthenticated(true);
         } else {
+          console.log('Token verification failed');
           setIsAuthenticated(false);
         }
       } catch (error) {
@@ -25,7 +28,7 @@ const ProtectedRoute = () => {
         setIsLoading(false);
       }
     };
-
+  
     verifyToken();
   }, []);
 
