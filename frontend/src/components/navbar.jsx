@@ -51,7 +51,7 @@ const Navbar = () => {
               Logout
             </button>
           ) : (
-            <button onClick={() => handleNavigation('/login')} className="text-gray-700 hover:text-black focus:outline-none">
+            <button onClick={() => handleNavigation('/login')} className="text-[#096A2E] hover:text-black focus:outline-none">
               Sign in
             </button>
           )}
