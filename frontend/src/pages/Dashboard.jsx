@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/sidebar';
+import Topbar from '../components/topbar';
 import InquiryDetails from '../components/InquiryDetails';
 
 function Dashboard() {
@@ -26,6 +27,7 @@ function Dashboard() {
   return (
     <div className="relative font-custom flex">
       {/* Sidebar */}
+      <Topbar />
       <Sidebar />
 
       {/* Main Content */}

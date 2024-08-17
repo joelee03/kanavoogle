@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InboxIcon, BriefcaseIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import Button from '../ui/button'
+import RedirectButton from './SocialMediaButton';
 import Logo from '../assets/webp/main_logo.webp'
 
 const Sidebar = () => {
@@ -50,15 +50,9 @@ const Sidebar = () => {
       </div>
 
       {/* Bottom Section */}
-      <div className="p-6">
-            <Button
-                variant="primary"
-                size="sm"
-                onClick={() => handleNavigation('/')}
-                className="w-full p-3 rounded-full text-white items-center justify-center hover:bg-[#7AA647]"
-            >
-                Logout
-            </Button>
+        <div className="flex space-x-2 justify-center mb-8">
+            <RedirectButton platform="LinkedIn" />
+            <RedirectButton platform="Facebook" />
         </div>
     </div>
   );
