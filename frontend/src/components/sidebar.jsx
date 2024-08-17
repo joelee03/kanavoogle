@@ -28,7 +28,7 @@ const Sidebar = () => {
 
                 {/* Navigation Links */}
                 <nav className="flex flex-col space-y-4">
-                    <a href="" className="flex items-center space-x-2 text-gray-700 hover:text-black">
+                    <a href="/dashboard" className="flex items-center space-x-2 text-gray-700 hover:text-black">
                     <HomeIcon className="h-6 w-6" />
                     <span>Your Inquiries</span>
                      </a>

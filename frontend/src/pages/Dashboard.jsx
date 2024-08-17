@@ -29,7 +29,7 @@ function Dashboard() {
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex flex-col justify-center items-center w-full h-screen overflow-hidden p-8">
+      <div className="flex flex-col justify-center items-center w-full h-screen overflow-hidden p-8 ml-64"> 
         <h1 className="text-3xl font-bold mb-8">Your Inquiries</h1>
 
         {/* Your Inquiries Section */}

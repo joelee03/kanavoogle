@@ -1,13 +1,21 @@
 import React from 'react'
+import Sidebar from '../components/sidebar';
 import InquiryForm from '../components/InquiryForm'
 
-function Montessori() {
+function montessori() {
   return (
-    <div>
-      <h1>Implement Montessori Education</h1>
-      <InquiryForm />
+    <div className="relative font-custom flex">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main Content */}
+      <div className="flex flex-col justify-center items-center w-full h-screen overflow-hidden p-8 ml-64"> 
+        <h1 className="text-3xl font-bold mb-8">Implement Montessori Education</h1>
+
+        <InquiryForm />
+      </div>
     </div>
   )
 }
 
-export default Montessori
+export default montessori;
