@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from '../components/sidebar'
+import Sidebar from '../ui/sidebar'
 import InquiryForm from '../components/InquiryForm'
 
 function Skills() {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Sidebar from '../components/sidebar';
-import Topbar from '../components/topbar';
+import Sidebar from '../ui/sidebar';
+import Topbar from '../ui/topbar';
 import InquiryDetails from '../components/InquiryDetails';
 
 function Dashboard() {
