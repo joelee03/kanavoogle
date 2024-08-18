@@ -25,10 +25,10 @@ const Home = () => {
 
         <div className="flex justify-center items-center">
           <p className='md:text-4xl sm:text-3xl text-xl'>Specialised in </p>
-          <span className='md:text-4xl sm:text-3xl text-xl pl-2'>
+          <span className='text-[#096A2E] md:text-4xl sm:text-3xl text-xl pl-2'>
             <Typewriter
             words={['Blockchain Technology', 'Montessori Education', '21st Century Skills']}
-            loop={0} // Infinite loop
+            loop={0} 
             cursor
             cursorStyle="|"
             typeSpeed={90}
