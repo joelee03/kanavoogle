@@ -16,9 +16,9 @@ const Home = () => {
   };
 
   return (
-    <div >
+    <div>
       <Navbar />
-      <div className="mt-20 max-w-[1200px] w-full h-screen mx-auto text-center flex flex-col justify-center">
+      <div className="max-w-[1200px] w-full mt-60 mx-auto text-center flex flex-col justify-center">
         <h1 className="md:text-6xl sm:text-5xl text-4xl font-custom md:py-6">
           Education and Project management Consultant
         </h1>
