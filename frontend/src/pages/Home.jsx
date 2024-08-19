@@ -20,7 +20,7 @@ const Home = () => {
       <Navbar />
       <div className="max-w-[1200px] w-full mt-60 mx-auto text-center flex flex-col justify-center">
         <h1 className="md:text-6xl sm:text-5xl text-4xl font-custom md:py-6">
-          Education and Project management Consultant
+          Education and Project Management Consultant
         </h1>
 
         <div className="flex justify-center items-center">
