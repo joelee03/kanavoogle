@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InboxIcon, BriefcaseIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import RedirectButton from '../components/SocialMediaButton';
+import RedirectButton from './SocialMediaButton';
 import Logo from '../assets/webp/main_logo.webp'
 
 const Sidebar = () => {

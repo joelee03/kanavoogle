@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate  } from 'react-router-dom'
 import Button from '../ui/button'
 import Navbar from '../ui/navbar';
-import Footer from '../components/footer';
+import Footer from '../ui/footer';
 import Services from '../components/Services';
 
 import { Typewriter } from 'react-simple-typewriter';
