@@ -5,6 +5,7 @@ import Navbar from '../ui/navbar';
 import Footer from '../ui/footer';
 import Services from '../components/Services';
 
+
 import { Typewriter } from 'react-simple-typewriter';
 
 const Home = () => {
@@ -42,7 +43,7 @@ const Home = () => {
           <Button
             variant="primary"
             size="lg"
-            onClick={() => handleNavigation('/signup')}
+            onClick={() => handleNavigation('/preview')}
             className="w-full p-3 rounded-full text-white items-center justify-center hover:bg-[#7AA647]"
           >
             Get Started

@@ -39,11 +39,6 @@ const Navbar = () => {
           <button onClick={() => handleNavigation('/')} className="focus:outline-none">
             <img className="h-12 object-cover mr-10" src={Logo} alt="kanavoogle logo" />
           </button>
-          <nav className="hidden md:flex space-x-10">
-            <a href="#" className="text-gray-700 hover:text-black">Services</a>
-            <a href="#" className="text-gray-700 hover:text-black">Why Kanavoogle?</a>
-            <a href="#" className="text-gray-700 hover:text-black">Resources</a>
-          </nav>
         </div>
         <div className="flex items-center space-x-4">
           {isSignedIn ? (
