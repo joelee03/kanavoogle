@@ -30,23 +30,25 @@ app.use(cors({
 app.use('/api/inquiry', inquiryRoutes);
 app.use('/api/user', userRoutes);
 
-// Stripe Payment Intent Route
-app.post('/api/create-payment-intent', async (req, res) => {
-    const { amount } = req.body;
-
+// Stripe Checkout Session Route for Subscription
+app.post('/api/create-checkout-session', async (req, res) => {
     try {
-        // Create a PaymentIntent with the specified amount
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: amount, // Amount in cents (e.g., $10.00 should be passed as 1000)
-            currency: 'usd',
+        const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
+            line_items: [
+                {
+                    price: 'price_1PrenKRqe8PxoiRoAzsNKBjA', 
+                    quantity: 1,
+                },
+            ],
+            mode: 'subscription', 
+            success_url: 'http://localhost:5173/',
+            cancel_url: 'http://localhost:5173/preview',
         });
 
-        res.status(200).send({
-            clientSecret: paymentIntent.client_secret,
-        });
+        res.status(200).json({ id: session.id });
     } catch (error) {
-        console.error('Error creating payment intent:', error);
+        console.error('Error creating checkout session:', error);
         res.status(500).send({ error: error.message });
     }
 });

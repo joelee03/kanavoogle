@@ -1,6 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Navbar from '../ui/navbar';
+import Cards from '../components/Cards'
+
 const Preview = () => {
   const navigate = useNavigate();
 
@@ -15,34 +18,11 @@ const Preview = () => {
   };
 
   return (
-    <div className="preview-container">
-      <h1>Select Your Plan</h1>
-      <div className="plans">
-        <div className="plan">
-          <h3>Free Plan</h3>
-          <h1>$0</h1>
-          <p>/ forever</p>
-          <ul>
-            <li>✔️ Access to limited content.</li>
-            <li>✔️ Community access.</li>
-          </ul>
-          <button onClick={() => handleSelectPlan({ name: 'Free Plan', price: 0 })}>
-            Select Free Plan
-          </button>
-        </div>
-        <div className="plan">
-          <h3>Premium Plan</h3>
-          <h1>$119</h1>
-          <p>/ year</p>
-          <ul>
-            <li>✔️ Access to all premium content.</li>
-            <li>✔️ Private Discord server invite.</li>
-            <li>✔️ Priority support.</li>
-          </ul>
-          <button onClick={() => handleSelectPlan({ name: 'Premium Plan', price: 119 })}>
-            Select Premium Plan
-          </button>
-        </div>
+    <div>
+      <Navbar />
+      <div className='mt-40 mx-auto text-center flex flex-col justify-center'>
+      <h1 className="md:text-6xl sm:text-5xl text-4xl font-custom md:py-6" >The best investment you may ever make.</h1>
+      <Cards />
       </div>
     </div>
   );

@@ -9,6 +9,10 @@ module.exports = {
       fontFamily: {
         custom: ['Lancelot', 'sans-serif']
       },
+      colors:{
+        'webcolor': '#7AA647',
+        'aftercolor' : "#678a3d"
+      }
     },
   },
   plugins: [],

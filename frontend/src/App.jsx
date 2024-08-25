@@ -15,8 +15,6 @@ import Blockchain from "./pages/Blockchain"
 import Montessori from "./pages/Montessori"
 import Skills from "./pages/Skills"
 
-import Payment from './pages/Payment';
-
 function App() {
   return (
     <div>
@@ -24,7 +22,6 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />}/>
           <Route path='/preview' element={<Preview />}/>
-          <Route path='/payment' element={<Payment />} />
           <Route path='/login' element={<Login />}/>
           <Route path='/signup' element={<Signup />}/>
           <Route path='/dashboard' element={<ProtectedRoute />}>
