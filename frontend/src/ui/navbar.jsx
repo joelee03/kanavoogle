@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 
+import Logo from '../assets/webp/main_logo.webp'
+
 const Navbar = () => {
   const { logout } = useLogout();
   const { user } = useAuthContext();
@@ -14,7 +16,7 @@ const Navbar = () => {
     <header className="bg-white">
       <div className="container max-w-[1400px] mx-auto p-2.5 flex items-center justify-between">
         <Link to="/" className="text-gray-800 no-underline">
-          <h1 className="text-xl">Workout Buddy</h1>
+          <img className="h-12 object-cover mr-10" src={Logo} alt="kanavoogle logo" /> 
         </Link>
         <nav className="flex items-center">
           {user && (

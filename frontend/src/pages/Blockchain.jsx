@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import InquiryForm from '../components/InquiryForm';
-import Topbar from '../ui/topbar'
-import Sidebar from '../ui/sidebar';
+import Navbar from '../ui/navbar';
+import Footer from '../ui/footer';
 
 import b1 from '../assets/webp/blockchain-1.webp';
 import b2 from '../assets/webp/blockchain-2.webp';
@@ -23,9 +23,8 @@ function Blockchain() {
   };
 
   return (
-    <div className="container mx-auto p-4 ml-64">
-      <Topbar />
-      <Sidebar />
+    <div className="container mx-auto p-4">
+      <Navbar />
       {/* Heading */}
       <h1 className="mt-20 text-center text-3xl font-bold my-8 text-webcolor">Novel Blockchain Projects</h1>
 
@@ -88,6 +87,7 @@ function Blockchain() {
 
       {/* Inquiry Form */}
       <InquiryForm />
+      <Footer />
     </div>
   );
 }

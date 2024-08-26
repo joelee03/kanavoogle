@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaProjectDiagram, FaGraduationCap, FaChild } from 'react-icons/fa'; 
+import { Link } from 'react-router-dom';
 
 function Services() {
     return (
@@ -11,7 +12,11 @@ function Services() {
                   <p className='text-center text-xl font-medium mx-8 mt-8 pb-8 border-b'>
                       For evaluating and experimenting with blockchain technology.
                   </p>
-                  <button className='bg-[#8ABE53] text-white w-[200px] rounded-md font-medium my-9 mx-auto px-6 py-3'>Learn More</button>
+                  <Link to='/blockchain'>
+                  <button className='bg-[#8ABE53] text-white w-[200px] rounded-md font-medium my-9 mx-auto px-6 py-3'>
+                    Learn More
+                    </button>
+                </Link>
               </div>
 
               <div className='w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300'>
@@ -20,7 +25,11 @@ function Services() {
                   <p className='text-center text-xl font-medium mx-8 mt-8 pb-8 border-b'>
                       Customized projects for learning top 21st-century skills using Blockchain and AI.
                   </p>
-                  <button className='bg-[#8ABE53] text-white w-[200px] rounded-md font-medium my-9 mx-auto px-6 py-3'>Learn More</button>
+                  <Link to='/skills'>
+                  <button className='bg-[#8ABE53] text-white w-[200px] rounded-md font-medium my-9 mx-auto px-6 py-3'>
+                    Learn More
+                    </button>
+                </Link>
               </div>
 
               <div className='w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300'>
@@ -29,7 +38,11 @@ function Services() {
                   <p className='text-center text-xl font-medium mx-8 mt-8 pb-8 border-b'>
                       Expansion of day care services with Montessori education model.
                   </p>
-                  <button className='bg-[#8ABE53] text-white w-[200px] rounded-md font-medium my-9 mx-auto px-6 py-3'>Learn More</button>
+                  <Link to='/montessori'>
+                  <button className='bg-[#8ABE53] text-white w-[200px] rounded-md font-medium my-9 mx-auto px-6 py-3'>
+                    Learn More
+                    </button>
+                </Link>
               </div>
           </div>
         </div>
