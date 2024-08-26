@@ -1,40 +1,22 @@
-import React, {useState} from 'react'
-import { useAuth } from '../authentication/AuthContext';
+import { useState } from "react"
+import { useLogin } from "../hooks/useLogin"
 import { useNavigate, Link } from 'react-router-dom'
 
 const LoginForm = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const navigate = useNavigate();
-    const { login } = useAuth();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const {login, error, isLoading} = useLogin()
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(''); // Clear previous errors
+    
+        const success = await login(email, password);
 
-        try {
-            const response = await fetch('http://localhost:5050/api/user/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include', // Important to include cookies in the request
-                body: JSON.stringify({ email, password })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || 'An error occurred');
-            }
-
-            // Handle successful login
-            navigate('/dashboard'); // Redirect to a protected route after login
-        } catch (err) {
-            setError(err.message);
-        }
-    };
+        if (success) {
+            navigate('/');
+        } 
+    }
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">

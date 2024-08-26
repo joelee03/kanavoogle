@@ -1,56 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import Logo from '../assets/webp/main_logo.webp';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useLogout } from '../hooks/useLogout';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Navbar = () => {
-  const [opacity, setOpacity] = useState(1);
-  const [isSignedIn, setIsSignedIn] = useState(false); // State to track sign-in status
-  const navigate = useNavigate();
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
 
-  const handleNavigation = (route) => {
-    if (route === '/') {
-      // Handle logout logic here
-      setIsSignedIn(false); // Update sign-in status
-      navigate('/'); // Redirect to sign-in page after logging out
-    } else {
-      navigate(route);
-    }
+  const handleClick = () => {
+    logout();
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const maxScroll = 1000;
-      const newOpacity = 1 - (scrollTop / maxScroll);
-      setOpacity(Math.max(newOpacity, 0));
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50" style={{ opacity }}>
-      <div id="nav" className="flex justify-between items-center p-4 max-w-screen-xl mx-auto">
-      <div className="flex items-center space-x-5"> 
-          <button onClick={() => handleNavigation('/')} className="focus:outline-none">
-            <img className="h-12 object-cover mr-10" src={Logo} alt="kanavoogle logo" />
-          </button>
-        </div>
-        <div className="flex items-center space-x-4">
-          {isSignedIn ? (
-            <button onClick={() => handleNavigation('/')} className="text-gray-700 hover:text-black focus:outline-none">
-              Logout
-            </button>
-          ) : (
-            <button onClick={() => handleNavigation('/login')} className="text-[#096A2E] hover:text-black focus:outline-none">
-              Sign in
-            </button>
+    <header className="bg-white">
+      <div className="container max-w-[1400px] mx-auto p-2.5 flex items-center justify-between">
+        <Link to="/" className="text-gray-800 no-underline">
+          <h1 className="text-xl">Workout Buddy</h1>
+        </Link>
+        <nav className="flex items-center">
+          {user && (
+            <div className="flex items-center">
+              <span className="text-gray-800">{user.email}</span>
+              <button 
+                onClick={handleClick} 
+                className="ml-2.5 bg-white text-green-500 border-2 border-green-500 p-1.5 rounded font-poppins text-base"
+              >
+                Log out
+              </button>
+            </div>
           )}
-        </div>
+          {!user && (
+            <div className="flex items-center">
+              <Link to="/login" className="ml-2.5 text-gray-800 no-underline">Login</Link>
+              <Link to="/signup" className="ml-2.5 text-gray-800 no-underline">Signup</Link>
+            </div>
+          )}
+        </nav>
       </div>
     </header>
   );

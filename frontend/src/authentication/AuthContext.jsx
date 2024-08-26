@@ -1,39 +1,37 @@
-import React, { createContext, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createContext, useReducer, useEffect } from 'react'
 
-const AuthContext = createContext();
+export const AuthContext = createContext()
 
-export const useAuth = () => useContext(AuthContext);
+export const authReducer = (state, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return { user: action.payload }
+    case 'LOGOUT':
+      return { user: null }
+    default:
+      return state
+  }
+}
 
-export const AuthProvider = ({ children }) => {
-  const navigate = useNavigate();
+export const AuthContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(authReducer, { 
+    user: null
+  })
 
-  const login = async (credentials) => {
-    const response = await fetch('http://localhost:5050/api/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
-      credentials: 'include',
-    });
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'))
 
-    if (response.ok) {
-      navigate('/dashboard');
+    if (user) {
+      dispatch({ type: 'LOGIN', payload: user }) 
     }
-  };
+  }, [])
 
-  const logout = async () => {
-    await fetch('http://localhost:5050/api/user/logout', {
-      method: 'POST',
-      credentials: 'include',
-    });
-    navigate('/');
-  };
-
+  console.log('AuthContext state:', state)
+  
   return (
-    <AuthContext.Provider value={{ login, logout }}>
-      {children}
+    <AuthContext.Provider value={{ ...state, dispatch }}>
+      { children }
     </AuthContext.Provider>
-  );
-};
+  )
+
+}

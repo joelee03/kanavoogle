@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import ProtectedRoute from './authentication/ProtectedRoute'
-import { AuthProvider } from './authentication/AuthContext';
+import { AuthContextProvider } from './authentication/AuthContext';
 
 // pages & components
 import Home from "./pages/Home"
@@ -20,7 +20,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <AuthProvider>
+        <AuthContextProvider>
           <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='/preview' element={<Preview />}/>
@@ -42,7 +42,7 @@ function App() {
               <Route index element={<Skills />} />
             </Route>
           </Routes>
-        </AuthProvider>
+        </AuthContextProvider>
       </BrowserRouter>
     </div>
   )
