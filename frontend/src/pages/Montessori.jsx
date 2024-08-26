@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import InquiryForm from '../components/InquiryForm';
-import Navbar from '../ui/navbar';
-import Footer from '../ui/footer';
 
 import m1 from '../assets/webp/montessori-1.webp';
 import m2 from '../assets/webp/montessori-2.webp';
@@ -24,8 +22,6 @@ function Montessori() {
 
   return (
     <div className="container mx-auto p-4">
-      <Navbar />
-
       {/* Heading */}
       <h1 className="mt-20 text-center text-3xl font-bold my-8 text-webcolor">Montessori Education</h1>
 
@@ -88,7 +84,6 @@ function Montessori() {
 
       {/* Inquiry Form */}
       <InquiryForm />
-      <Footer />
     </div>
   );
 }

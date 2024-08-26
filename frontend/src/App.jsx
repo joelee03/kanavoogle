@@ -7,6 +7,8 @@ import Home from "./pages/Home"
 import Preview from "./pages/Preview"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
+import Navbar from './ui/navbar';
+import Footer from './ui/footer';
 
 // services 
 import Blockchain from "./pages/Blockchain"
@@ -21,6 +23,7 @@ function App() {
     <div>
       <BrowserRouter>
         <AuthContextProvider>
+          <Navbar />
           <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='/preview' element={<Preview />}/>
@@ -31,6 +34,7 @@ function App() {
             <Route path='/montessori' element={<Montessori />}/>
             <Route path='/courses' element={<Courses />}/>
           </Routes>
+          <Footer />
         </AuthContextProvider>
       </BrowserRouter>
     </div>

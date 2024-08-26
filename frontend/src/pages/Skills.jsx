@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import InquiryForm from '../components/InquiryForm';
-import Navbar from '../ui/navbar';
-import Footer from '../ui/footer';
 
 import s1 from '../assets/webp/skills-1.webp';
 import s2 from '../assets/webp/skills-2.webp';
@@ -24,8 +22,6 @@ function Skills() {
 
   return (
     <div className="container mx-auto p-4">
-      <Navbar />
-
       {/* Heading */}
       <h1 className="mt-20 text-center text-3xl font-bold my-8 text-webcolor">21st Century Skills</h1>
 
@@ -88,7 +84,6 @@ function Skills() {
 
       {/* Inquiry Form */}
       <InquiryForm />
-      <Footer />
     </div>
   );
 }
