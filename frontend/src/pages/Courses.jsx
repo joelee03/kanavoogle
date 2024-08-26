@@ -13,7 +13,8 @@ function Courses() {
       icon: c1,
       name: "Blockchain Fundamentals",
       caption: "Learn the foundations of blockchain",
-      route: "/courses/blockchain-fundamentals"
+      route: "/courses/blockchain-fundamentals",
+      duration: "20"
     },
     centurySkills: {
       title: "Gain 21st Century Skills",
@@ -21,7 +22,8 @@ function Courses() {
       icon: c2,
       name: "21st Century Foundations",
       caption: "Learn top 21st Century skills",
-      route: "/courses/21st-century-foundations"
+      route: "/courses/21st-century-foundations",
+      duration: "15"
     },
     montessoriEducation: {
       title: "Implement Montessori Education",
@@ -29,10 +31,11 @@ function Courses() {
       icon: c3,
       name: "Montessori Education Basics",
       caption: "Learn the fundamentals of montessori education",
-      route: "/courses/montessori-basics"
+      route: "/courses/montessori-basics",
+      duration: "10"
     },
   };
-  
+
   return (
     <div>
       <div className='my-20 mx-auto text-center flex flex-col items-center justify-center'>
@@ -47,6 +50,7 @@ function Courses() {
                 name={course.name}
                 caption={course.caption}
                 route={course.route}
+                duration={course.duration}
               />
             ))}
         </div>
