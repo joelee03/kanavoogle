@@ -3,7 +3,7 @@ import RedirectButton from './SocialMediaButton';
 
 const Footer = () => {
     return (
-        <footer className="w-full bg-white border-t py-4">
+        <footer className="w-full bg-white border-t py-4 mt-auto">
             <div className="max-w-screen-xl mx-auto flex justify-between items-center">
                 <div id="footer_text">
                     <p className="text-gray-700">Copyright © 2024 Kanavoogle Pty Ltd</p>

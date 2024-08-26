@@ -48,7 +48,7 @@ const Cards = () => {
           <ul className="text-gray-600 mb-6 space-y-2 text-left">
             <li>✅ Own forever.</li>
             <li>✅ Unlimited access to all current and future courses for life</li>
-            <li>✅ Tailered support</li>
+            <li>✅ Priority support</li>
           </ul>
           
           <button 
@@ -69,7 +69,7 @@ const Cards = () => {
           {/* Includes Section */}
           <ul className="text-gray-600 mb-6 space-y-2 text-left">
             <li>✅ Unlimited access to all current and future courses monthly</li>
-            <li>✅ Tailered support</li>
+            <li>✅ Priority support</li>
           </ul>
           
           <button 
