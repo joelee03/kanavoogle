@@ -28,23 +28,40 @@ app.use(cors({
 app.use('/api/inquiry', inquiryRoutes);
 app.use('/api/user', userRoutes);
 
-// Stripe Checkout Session Route for Subscription
 app.post('/api/create-checkout-session', async (req, res) => {
     try {
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            line_items: [
-                {
-                    price: 'price_1PrenKRqe8PxoiRoAzsNKBjA', 
-                    quantity: 1,
-                },
-            ],
-            mode: 'subscription', 
-            success_url: 'http://localhost:5173/',
-            cancel_url: 'http://localhost:5173/preview',
-        });
+        const { mode } = req.body;
 
-        res.status(200).json({ id: session.id });
+        let session;
+        if (mode === 'subscription') {
+            session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_items: [
+                    {
+                        price: 'price_1PrenKRqe8PxoiRoAzsNKBjA', // Subscription product price ID
+                        quantity: 1,
+                    },
+                ],
+                mode: 'subscription',
+                success_url: 'http://localhost:5173/',
+                cancel_url: 'http://localhost:5173/preview',
+            });
+        } else if (mode === 'payment') {
+            session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_items: [
+                    {
+                        price: 'price_1PrvXERqe8PxoiRoTl0JPDKm', // One-time purchase product price ID
+                        quantity: 1,
+                    },
+                ],
+                mode: 'payment',
+                success_url: 'http://localhost:5173/',
+                cancel_url: 'http://localhost:5173/preview',
+            });
+        }
+
+        res.status(200).json({ sessionId: session.id });
     } catch (error) {
         console.error('Error creating checkout session:', error);
         res.status(500).send({ error: error.message });
