@@ -1,8 +1,13 @@
 import React from 'react'
 
+import Navbar from '../ui/navbar'
+
 function Courses() {
   return (
-    <div>Courses</div>
+    <div>
+      <Navbar />
+      Courses
+    </div>
   )
 }
 

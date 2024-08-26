@@ -19,6 +19,9 @@ const Navbar = () => {
           <Link to="/" className="text-gray-800 no-underline">
             <img className="h-12 object-cover" src={Logo} alt="kanavoogle logo" />
           </Link>
+          <Link to="/preview" className="ml-10 text-gray-800 no-underline hover:text-[#7AA647]">
+            Subscription
+          </Link>
           <Link to="/courses" className="ml-10 text-gray-800 no-underline hover:text-[#7AA647]">
             Courses
           </Link>
