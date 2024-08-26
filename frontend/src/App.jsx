@@ -17,6 +17,7 @@ import Skills from "./pages/Skills"
 
 // courses
 import Courses from "./pages/Courses"
+import Blockchain_Fundamentals from './pages/courses/Blockchain_Fundamentals';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path='/skills' element={<Skills />}/>
             <Route path='/montessori' element={<Montessori />}/>
             <Route path='/courses' element={<Courses />}/>
+            <Route path='/courses/blockchain-fundamentals' element={<Blockchain_Fundamentals />}/>
           </Routes>
           <Footer />
         </AuthContextProvider>

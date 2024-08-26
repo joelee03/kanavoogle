@@ -17,6 +17,7 @@ function Courses() {
             icon={c1}
             name="Blockchain Fundamentals"
             caption="Learn the foundations of blockchain"
+            route="/courses/blockchain-fundamentals"
           />
           <Course 
             title="Gain 21st Century Skills"
