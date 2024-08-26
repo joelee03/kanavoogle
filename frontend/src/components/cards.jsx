@@ -43,7 +43,7 @@ const Cards = () => {
         <div className="bg-gray-50 p-6 rounded-lg shadow-inner hover:shadow-lg transition-shadow duration-300 flex-1">
           <h3 className="text-xl font-semibold text-gray-700 mb-2">Lifetime Access</h3>
           <p className="text-gray-600 mb-4">Access to all content</p>
-          <div className="text-2xl font-bold text-gray-800 mb-6">$250</div>
+          <div className="text-2xl font-bold text-gray-800 mb-6">$250 / One Time</div>
           
           {/* Includes Section */}
           <ul className="text-gray-600 mb-6 space-y-2">
@@ -67,7 +67,7 @@ const Cards = () => {
             Monthly Subscription
           </h3>
           <p className="text-gray-600 mb-4">Access to all content</p>
-          <div className="text-2xl font-bold text-gray-800 mb-6">$20 / month</div>
+          <div className="text-2xl font-bold text-gray-800 mb-6">$20 / Month</div>
           
           {/* Includes Section */}
           <ul className="text-gray-600 mb-6 space-y-2">
