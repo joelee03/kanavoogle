@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useAuth } from '../authentication/AuthContext';
 import { useNavigate, Link } from 'react-router-dom'
 
 const LoginForm = () => {
@@ -6,6 +7,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();

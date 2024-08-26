@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../authentication/AuthContext';
 
 const SignupForm = () => {
     const [username, setUsername] = useState('');
@@ -7,6 +8,7 @@ const SignupForm = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +20,8 @@ const SignupForm = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, email, password })
+                body: JSON.stringify({ username, email, password }),
+                credentials: 'include', // Include cookies in the request
             });
 
             const data = await response.json();
@@ -26,7 +29,8 @@ const SignupForm = () => {
             if (!response.ok) {
                 throw new Error(data.error || 'An error occurred');
             }
-
+            // Use the login method from AuthContext to set the token
+            login({ email, password });
             // Handle successful signup (e.g., redirect to login or dashboard)
             navigate('/login'); // Redirect to login after successful signup
         } catch (err) {

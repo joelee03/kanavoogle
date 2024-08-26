@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import ProtectedRoute from './authentication/ProtectedRoute'
+import { AuthProvider } from './authentication/AuthContext';
 
 // pages & components
 import Home from "./pages/Home"
@@ -19,27 +20,29 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/preview' element={<Preview />}/>
-          <Route path='/login' element={<Login />}/>
-          <Route path='/signup' element={<Signup />}/>
-          <Route path='/dashboard' element={<ProtectedRoute />}>
-            <Route index element={<Dashboard />} />
-          </Route>
-          <Route path='/account' element={<ProtectedRoute />}>
-            <Route index element={<Account />} />
-          </Route>
-          <Route path='/blockchain' element={<ProtectedRoute />}>
-            <Route index element={<Blockchain />} />
-          </Route>
-          <Route path='/montessori' element={<ProtectedRoute />}>
-            <Route index element={<Montessori />} />
-          </Route>
-          <Route path='/skills' element={<ProtectedRoute />}>
-            <Route index element={<Skills />} />
-          </Route>
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path='/' element={<Home />}/>
+            <Route path='/preview' element={<Preview />}/>
+            <Route path='/login' element={<Login />}/>
+            <Route path='/signup' element={<Signup />}/>
+            <Route path='/dashboard' element={<ProtectedRoute />}>
+              <Route index element={<Dashboard />} />
+            </Route>
+            <Route path='/account' element={<ProtectedRoute />}>
+              <Route index element={<Account />} />
+            </Route>
+            <Route path='/blockchain' element={<ProtectedRoute />}>
+              <Route index element={<Blockchain />} />
+            </Route>
+            <Route path='/montessori' element={<ProtectedRoute />}>
+              <Route index element={<Montessori />} />
+            </Route>
+            <Route path='/skills' element={<ProtectedRoute />}>
+              <Route index element={<Skills />} />
+            </Route>
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   )
