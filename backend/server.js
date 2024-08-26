@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 // Import API
@@ -20,7 +19,6 @@ const app = express();
 // Middleware
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(cookieParser());
 app.use(cors({
     origin: 'http://localhost:5173', // frontend URL
     credentials: true
