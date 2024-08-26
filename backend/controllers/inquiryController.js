@@ -15,6 +15,18 @@ const postInquiry = async (req, res) => {
             details,
         });
 
+        // Define recipients based on the service type
+        let recipientEmail;
+        if (service === 'Novel Blockchain Projects') {
+            recipientEmail = 'blockchain@kanavoo.live';
+        } else if (service === 'Gain 21st Century Skills') {
+            recipientEmail = 'Skills@kanavoo.live';
+        } else if (service === 'Implement Montessori Education') {
+            recipientEmail = 'Montessori@kanavoo.live';
+        } else {
+            recipientEmail = 'defaultemail@example.com'; // default email if none of the services match
+        }
+
         // Setup Nodemailer transporter 
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
@@ -29,7 +41,7 @@ const postInquiry = async (req, res) => {
         // Email options
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: 'joelee2003@gmail.com',
+            to: recipientEmail,
             subject: 'New Inquiry Submitted',
             text: `
                 A new inquiry has been submitted with the following details:
