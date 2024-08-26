@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../authentication/AuthContext';
 
 
 const stripePromise = loadStripe('pk_test_51PrZbhRqe8PxoiRo43fHJ5qr43hE1S6QP2LQuBzfLOKc0lkZS1tNSlyEpqirLSO1lbDrVYDSs3G5WZEMBVIqB3NE00IpwOvTZq');
 
 const Cards = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleCheckout = async (mode) => {
+    if (!user) {
+      navigate('/login'); // Redirect to login if user is not authenticated
+      return;
+    }
+
     const stripe = await stripePromise;
 
     const response = await fetch('http://localhost:5050/api/create-checkout-session', {
