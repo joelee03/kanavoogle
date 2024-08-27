@@ -43,7 +43,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
                     },
                 ],
                 mode: 'subscription',
-                success_url: 'http://localhost:5173/',
+                success_url: 'http://localhost:5173/success',
                 cancel_url: 'http://localhost:5173/preview',
             });
         } else if (mode === 'payment') {
@@ -56,7 +56,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
                     },
                 ],
                 mode: 'payment',
-                success_url: 'http://localhost:5173/',
+                success_url: 'http://localhost:5173/success',
                 cancel_url: 'http://localhost:5173/preview',
             });
         }
