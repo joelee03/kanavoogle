@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { FaTools } from 'react-icons/fa';
 
-function 
-Blockchain_Fundamentals() {
+function Blockchain_Fundamentals() {
   return (
-    <div className='h-[100vh]'>
-        coming soon
+    <div className="h-[90vh] flex items-center justify-center">
+      <div className="flex items-center space-x-4">
+        <FaTools className="text-6xl text-gray-600" />
+        <p className="text-2xl font-semibold">Coming Soon</p>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Blockchain_Fundamentals
+export default Blockchain_Fundamentals;
