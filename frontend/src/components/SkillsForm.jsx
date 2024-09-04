@@ -1,19 +1,18 @@
 import { useState } from 'react';
 
-const InquiryForm = () => {
+const SkillsForm = () => {
     const [project, setProject] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [service, setService] = useState('')
     const [details, setDetails] = useState('')
     const [error, setError] = useState(null)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const inquiry = { project, name, email, service, details };
+        const inquiry = { project, name, email, details };
     
         try {
-            const response = await fetch('http://localhost:5050/api/inquiry/', {
+            const response = await fetch('http://localhost:5050/api/inquiry/skills', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -84,21 +83,6 @@ const InquiryForm = () => {
             </div>
 
             <div className="mb-4">
-                <label htmlFor="service" className="block text-gray-700 font-semibold mb-2">Service Interested In</label>
-                <select 
-                    id="service"
-                    value={service}
-                    onChange={(e) => setService(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                    <option value="" disabled>Select a service</option>
-                    <option value="Novel Blockchain Projects">Novel Blockchain Projects</option>
-                    <option value="Gain 21st Century Skills">Gain 21st Century Skills</option>
-                    <option value="Implement Montessori Education">Implement Montessori Education</option>
-                </select>
-            </div>
-
-            <div className="mb-4">
                 <label htmlFor="details" className="block text-gray-700 font-semibold mb-2">Project Details</label>
                 <textarea
                     id="details"
@@ -119,4 +103,4 @@ const InquiryForm = () => {
     );
 }
 
-export default InquiryForm
+export default SkillsForm

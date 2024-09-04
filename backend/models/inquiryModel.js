@@ -15,11 +15,6 @@ const inquirySchema = new Schema({
         type: String,
         required: true
     },
-    service: {
-        type: String,
-        enum: ['Novel Blockchain Projects', 'Gain 21st Century Skills', 'Implement Montessori Education'],
-        required: true 
-    },
     details: {
         type: String,
         required: true

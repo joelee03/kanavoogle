@@ -13,6 +13,22 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  subscriptionActive: {
+    type: Boolean,
+    default: false
+  },
+  subscriptionStartDate: {
+    type: Date,
+    default: null
+  },
+  subscriptionEndDate: {
+    type: Date,
+    default: null
+  },
+  stripeCustomerId: {
+    type: String,
+    default: null
   }
 })
 

@@ -1,12 +1,16 @@
 const express = require('express')
 const {
-    postInquiry,
+    postBInquiry,
+    postMInquiry,
+    postSInquiry,
     getInquiries
 } = require('../controllers/inquiryController')
 const router = express.Router()
 
 //submit an inquiry 
-router.post('/', postInquiry)
+router.post('/blockchain', postBInquiry)
+router.post('/montessori', postMInquiry)
+router.post('/skills', postSInquiry)
 
 //get an inquiry 
 router.get('/', getInquiries)

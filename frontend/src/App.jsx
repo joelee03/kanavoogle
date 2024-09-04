@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import { AuthContextProvider } from './authentication/AuthContext';
+import { UserProvider} from './authentication/UserContext';
 
 // pages & components
 import Home from "./pages/Home"
@@ -29,22 +30,24 @@ function App() {
     <div>
       <BrowserRouter>
         <AuthContextProvider>
-          <Navbar />
-          <Routes>
-            <Route path='/' element={<Home />}/>
-            <Route path='/preview' element={<Preview />}/>
-            <Route path='/login' element={<Login />}/>
-            <Route path='/signup' element={<Signup />}/>
-            <Route path='/blockchain' element={<Blockchain />}/>
-            <Route path='/skills' element={<Skills />}/>
-            <Route path='/montessori' element={<Montessori />}/>
-            <Route path='/courses' element={<Courses />}/>
-            <Route path='/courses/blockchain-fundamentals' element={<Blockchain_Fundamentals />}/>
-            <Route path='/courses/21st-century-foundations' element={<Century_Foundations />}/>
-            <Route path='/courses/montessori-basics' element={<Montessori_Basics />}/>
-            <Route path='/success' element={<Success />}/>
-          </Routes>
-          <Footer />
+          <UserProvider>
+            <Navbar />
+            <Routes>
+              <Route path='/' element={<Home />}/>
+              <Route path='/preview' element={<Preview />}/>
+              <Route path='/login' element={<Login />}/>
+              <Route path='/signup' element={<Signup />}/>
+              <Route path='/blockchain' element={<Blockchain />}/>
+              <Route path='/skills' element={<Skills />}/>
+              <Route path='/montessori' element={<Montessori />}/>
+              <Route path='/courses' element={<Courses />}/>
+              <Route path='/courses/blockchain-fundamentals' element={<Blockchain_Fundamentals />}/>
+              <Route path='/courses/21st-century-foundations' element={<Century_Foundations />}/>
+              <Route path='/courses/montessori-basics' element={<Montessori_Basics />}/>
+              <Route path='/success' element={<Success />}/>
+            </Routes>
+            <Footer />
+          </UserProvider>
         </AuthContextProvider>
       </BrowserRouter>
     </div>

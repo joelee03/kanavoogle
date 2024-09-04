@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import InquiryForm from '../components/InquiryForm';
+import InquiryForm from '../components/SkillsForm';
 
 import s1 from '../assets/webp/skills-1.webp';
 import s2 from '../assets/webp/skills-2.webp';

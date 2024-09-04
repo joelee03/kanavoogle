@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import InquiryForm from '../components/InquiryForm';
+import InquiryForm from '../components/MontessoriForm';
 
 import m1 from '../assets/webp/montessori-1.webp';
 import m2 from '../assets/webp/montessori-2.webp';

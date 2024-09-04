@@ -23,7 +23,7 @@ const Cards = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ mode }),
+      body: JSON.stringify({ mode, client_reference_id: user._id }),
     });
 
     const { sessionId } = await response.json();
