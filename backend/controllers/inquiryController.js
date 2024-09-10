@@ -4,13 +4,14 @@ require('dotenv').config();
 
 // create an inquiry
 const postBInquiry = async (req, res) => {
-    const { project, name, email, details } = req.body;
+    const { project, name, email, phone, details } = req.body;
 
     try {
         const inquiry = await Inquiry.create({
             project,
             name,
             email,
+            phone,
             details,
         });
 
@@ -36,6 +37,7 @@ const postBInquiry = async (req, res) => {
                 Project: ${project}
                 Name: ${name}
                 Email: ${email}
+                Phone: ${phone}
                 Details: ${details}
             `
         };
@@ -57,13 +59,14 @@ const postBInquiry = async (req, res) => {
 
 // create an inquiry
 const postSInquiry = async (req, res) => {
-    const { project, name, email, details } = req.body;
+    const { project, name, email, phone, details } = req.body;
 
     try {
         const inquiry = await Inquiry.create({
             project,
             name,
             email,
+            phone,
             details,
         });
 
@@ -89,6 +92,7 @@ const postSInquiry = async (req, res) => {
                 Project: ${project}
                 Name: ${name}
                 Email: ${email}
+                Phone: ${phone}
                 Details: ${details}
             `
         };
@@ -110,13 +114,14 @@ const postSInquiry = async (req, res) => {
 
 // create an inquiry
 const postMInquiry = async (req, res) => {
-    const { project, name, email, details } = req.body;
+    const { project, name, email, phone, details } = req.body;
 
     try {
         const inquiry = await Inquiry.create({
             project,
             name,
             email,
+            phone,
             details,
         });
 
@@ -142,6 +147,7 @@ const postMInquiry = async (req, res) => {
                 Project: ${project}
                 Name: ${name}
                 Email: ${email}
+                Phone: ${phone}
                 Details: ${details}
             `
         };

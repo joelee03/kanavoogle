@@ -15,6 +15,10 @@ const inquirySchema = new Schema({
         type: String,
         required: true
     },
+    phone: {
+        type: String,
+        required: false
+    },
     details: {
         type: String,
         required: true
