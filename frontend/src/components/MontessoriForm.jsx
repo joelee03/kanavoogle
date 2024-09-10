@@ -4,12 +4,13 @@ const MontessoriForm = () => {
     const [project, setProject] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
     const [details, setDetails] = useState('')
     const [error, setError] = useState(null)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const inquiry = { project, name, email, details };
+        const inquiry = { project, name, email, phone, details };
     
         try {
             const response = await fetch('http://localhost:5050/api/inquiry/montessori', {
@@ -33,7 +34,7 @@ const MontessoriForm = () => {
                 setProject('')
                 setName('')
                 setEmail('')
-                setService('')
+                setPhone('')
                 setDetails('')
                 setError(null)
                 console.log('Inquiry sent:', data);
@@ -78,6 +79,17 @@ const MontessoriForm = () => {
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+            </div>
+
+            <div className="mb-4">
+                <label htmlFor="phone" className="block text-gray-700 font-semibold mb-2">Phone (optional)</label>
+                <input 
+                    type="tel"
+                    id="phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
             </div>
