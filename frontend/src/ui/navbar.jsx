@@ -14,6 +14,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      window.location.reload();
     } catch (error) {
       console.error("Error logging out:", error);
     }
