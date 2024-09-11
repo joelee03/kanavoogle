@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InquiryForm from '../components/BlockchainForm';
+import SampleBlockchain from '../components/SampleBlockchain';
 
 import b1 from '../assets/webp/blockchain-1.webp';
 import b2 from '../assets/webp/blockchain-2.webp';
@@ -55,32 +56,8 @@ function Blockchain() {
         </button>
       </div>
 
-      {/* Three Sections Below the Carousel */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 m-4">
-        {/* Section 1 */}
-        <div className="p-6 bg-white shadow-lg rounded-lg m-4 transform transition duration-300 hover:scale-105">
-          <h2 className="text-xl font-semibold mb-4 text-webcolor">Decentralized Finance (DeFi) Innovations</h2>
-          <p>
-          Discover groundbreaking DeFi projects that are reshaping the financial landscape, offering decentralized alternatives to traditional banking, lending, and trading systems.
-          </p>
-        </div>
-
-        {/* Section 2 */}
-        <div className="p-6 bg-white shadow-lg rounded-lg m-4 transform transition duration-300 hover:scale-105">
-          <h2 className="text-xl font-semibold mb-4 text-webcolor">Blockchain for Social Impact</h2>
-          <p>
-          Explore innovative blockchain projects that aim to solve global challenges, from transparent charitable donations to improving supply chain traceability in humanitarian efforts.
-          </p>
-        </div>
-
-        {/* Section 3 */}
-        <div className="p-6 bg-white shadow-lg rounded-lg m-4 transform transition duration-300 hover:scale-105">
-          <h2 className="text-xl font-semibold mb-4 text-webcolor">NFTs and Digital Collectibles</h2>
-          <p>
-          Understand the emerging trends in NFTs and digital collectibles, and how these blockchain-based assets are transforming art, gaming, and ownership in the digital world.
-          </p>
-        </div>
-      </div>
+      {/* sample projects */}
+      <SampleBlockchain />
 
       {/* Inquiry Form */}
       <InquiryForm />
