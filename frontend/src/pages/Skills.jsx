@@ -4,6 +4,7 @@ import InquiryForm from '../components/SkillsForm';
 import s1 from '../assets/webp/skills-1.webp';
 import s2 from '../assets/webp/skills-2.webp';
 import m3 from '../assets/webp/montessori-3.webp';
+import SampleSkills from '../components/SampleSkills';
 
 function Skills() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,32 +56,8 @@ function Skills() {
         </button>
       </div>
 
-      {/* Three Sections Below the Carousel */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 m-4">
-        {/* Section 1 */}
-        <div className="p-6 bg-white shadow-lg rounded-lg m-4 transform transition duration-300 hover:scale-105">
-          <h2 className="text-xl font-semibold mb-4 text-webcolor">Learning Skills</h2>
-          <p>
-          Dive into strategies that foster effective learning skills in children, focusing on critical thinking, problem-solving, and the ability to learn independently in a supportive environment.
-          </p>
-        </div>
-
-        {/* Section 2 */}
-        <div className="p-6 bg-white shadow-lg rounded-lg m-4 transform transition duration-300 hover:scale-105">
-          <h2 className="text-xl font-semibold mb-4 text-webcolor">Literacy Skills</h2>
-          <p>
-          Discover methods to enhance literacy skills in young learners, including reading, writing, and comprehension, through interactive and engaging educational practices.
-          </p>
-        </div>
-
-        {/* Section 3 */}
-        <div className="p-6 bg-white shadow-lg rounded-lg m-4 transform transition duration-300 hover:scale-105">
-          <h2 className="text-xl font-semibold mb-4 text-webcolor">Life Skills</h2>
-          <p>
-          Explore how to teach essential life skills such as communication, self-management, and collaboration, helping children to become confident and capable individuals.
-          </p>
-        </div>
-      </div>
+      {/* sample projects */}
+      <SampleSkills />
 
       {/* Inquiry Form */}
       <InquiryForm />

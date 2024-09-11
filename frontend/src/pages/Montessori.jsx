@@ -4,6 +4,7 @@ import InquiryForm from '../components/MontessoriForm';
 import m1 from '../assets/webp/montessori-1.webp';
 import m2 from '../assets/webp/montessori-2.webp';
 import m3 from '../assets/webp/montessori-3.webp';
+import SampleMontessori from '../components/SampleMontessori';
 
 function Montessori() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,32 +56,8 @@ function Montessori() {
         </button>
       </div>
 
-      {/* Three Sections Below the Carousel */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 m-4">
-        {/* Section 1 */}
-        <div className="p-6 bg-white shadow-lg rounded-lg m-4 transform transition duration-300 hover:scale-105">
-          <h2 className="text-xl font-semibold mb-4 text-webcolor">Montessori Philosophy</h2>
-          <p>
-            Explore the fundamental principles of Montessori education, focusing on child-centered learning, independence, and respect for a child’s natural psychological development.
-          </p>
-        </div>
-
-        {/* Section 2 */}
-        <div className="p-6 bg-white shadow-lg rounded-lg m-4 transform transition duration-300 hover:scale-105">
-          <h2 className="text-xl font-semibold mb-4 text-webcolor">Classroom Environment</h2>
-          <p>
-            Learn how to create a prepared environment that encourages exploration, creativity, and hands-on learning, tailored to the needs of each child.
-          </p>
-        </div>
-
-        {/* Section 3 */}
-        <div className="p-6 bg-white shadow-lg rounded-lg m-4 transform transition duration-300 hover:scale-105">
-          <h2 className="text-xl font-semibold mb-4 text-webcolor">Montessori Materials</h2>
-          <p>
-            Understand the unique materials used in Montessori education and how they help children develop practical life skills, sensory awareness, and a deep understanding of various subjects.
-          </p>
-        </div>
-      </div>
+      {/* sample projects */}
+      <SampleMontessori />
 
       {/* Inquiry Form */}
       <InquiryForm />
