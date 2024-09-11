@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
-import { AuthContextProvider } from './authentication/AuthContext';
+import { AuthProvider } from './authentication/AuthContext';
 import { UserProvider} from './authentication/UserContext';
 
 // pages & components
@@ -29,7 +29,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <AuthContextProvider>
+        <AuthProvider>
           <UserProvider>
             <Navbar />
             <Routes>
@@ -48,7 +48,7 @@ function App() {
             </Routes>
             <Footer />
           </UserProvider>
-        </AuthContextProvider>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   )

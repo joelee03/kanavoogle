@@ -1,18 +1,22 @@
 import { Link } from 'react-router-dom';
-import { useLogout } from '../hooks/useLogout';
-import { useAuthContext } from '../hooks/useAuthContext';
 import { useState } from 'react';
-
-import Logo from '../assets/webp/main_logo.webp'
+import { signOut } from 'firebase/auth';
+import { useAuth } from '../authentication/AuthContext'; // Import the AuthContext
+import { auth } from '../firebase/firebase'; // Import your Firebase configuration
+import Logo from '../assets/webp/main_logo.webp';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
 const Navbar = () => {
-  const { logout } = useLogout();
-  const { user } = useAuthContext();
+  const { currentUser } = useAuth(); // Access currentUser from AuthContext
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  const handleClick = () => {
-    logout();
+  // Handle logout
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   };
 
   return (
@@ -52,11 +56,11 @@ const Navbar = () => {
           </Link>
         </div>
         <nav className="flex items-center">
-          {user ? (
+          {currentUser ? (
             <div className="flex items-center">
-              <span className="text-gray-800">{user.email}</span>
+              <span className="text-gray-800">{currentUser.email}</span>
               <button 
-                onClick={handleClick} 
+                onClick={handleLogout} 
                 className="ml-2.5 bg-white text-[#7AA647] border-2 border-[#7AA647] p-1.5 rounded font-poppins">
                 Logout
               </button>
