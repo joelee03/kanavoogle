@@ -57,6 +57,7 @@ function Blockchain() {
       </div>
 
       {/* sample projects */}
+      <h2 className="mt-20 text-center text-3xl font-bold text-webcolor">Sample Projects</h2>
       <SampleBlockchain />
 
       {/* Inquiry Form */}
