@@ -18,9 +18,7 @@ import Skills from "./pages/Skills"
 
 // courses
 import Courses from "./pages/Courses"
-import Blockchain_Fundamentals from './pages/courses/Blockchain_Fundamentals';
-import Century_Foundations from './pages/courses/Century_Foundations';
-import Montessori_Basics from './pages/courses/Montessori_Basics';
+import CoursePreview from './pages/CoursePreview';
 
 // payment success
 import Success from './pages/Success';
@@ -41,9 +39,7 @@ function App() {
               <Route path='/skills' element={<Skills />}/>
               <Route path='/montessori' element={<Montessori />}/>
               <Route path='/courses' element={<Courses />}/>
-              <Route path='/courses/blockchain-fundamentals' element={<Blockchain_Fundamentals />}/>
-              <Route path='/courses/21st-century-foundations' element={<Century_Foundations />}/>
-              <Route path='/courses/montessori-basics' element={<Montessori_Basics />}/>
+              <Route path="/courses/:courseId" element={<CoursePreview />} />
               <Route path='/success' element={<Success />}/>
             </Routes>
             <Footer />
