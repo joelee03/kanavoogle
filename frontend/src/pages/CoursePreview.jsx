@@ -42,10 +42,12 @@ const CoursePreview = () => {
   const learningOutcomes = course?.learningOutcomes || [];
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container h-[100vh] mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">{course.name}</h1>
       <p className="text-xl mb-6">{course.caption}</p>
-      <img src={course.icon} alt={course.title} className="w-full h-auto mb-4" />
+      <div className='w-200 h-200 mb-10'>
+        <img src={course.icon} alt={course.title}/>
+      </div>
 
       <h2 className="text-2xl font-semibold mb-2">Learning Outcomes:</h2>
       <ul className="list-disc pl-6 mb-6">
