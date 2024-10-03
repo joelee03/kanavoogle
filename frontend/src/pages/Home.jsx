@@ -1,8 +1,6 @@
 import React from 'react'
 import { useNavigate  } from 'react-router-dom'
 import Button from '../ui/button'
-import Navbar from '../ui/navbar';
-import Footer from '../ui/footer';
 import Services from '../components/Services';
 
 
@@ -17,7 +15,7 @@ const Home = () => {
   };
 
   return (
-    <div className='h-[90vh]'>
+    <div>
       <div className="max-w-[1200px] w-full mt-60 mx-auto text-center flex flex-col justify-center">
         <h1 className="md:text-6xl sm:text-5xl text-4xl font-custom md:py-6">
           Education and Project Management Consultant
