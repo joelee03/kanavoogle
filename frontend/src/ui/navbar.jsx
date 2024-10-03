@@ -55,6 +55,9 @@ const Navbar = () => {
           <Link to="/preview" className="ml-10 text-gray-800 no-underline hover:text-[#7AA647]">
             Subscription
           </Link>
+          <Link to="/tutorial" className="ml-10 text-gray-800 no-underline hover:text-[#7AA647]">
+            Tutorial
+          </Link>
         </div>
         <nav className="flex items-center">
           {currentUser ? (

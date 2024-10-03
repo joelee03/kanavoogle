@@ -11,6 +11,7 @@ import Signup from "./pages/Signup"
 import Navbar from './ui/navbar';
 import Footer from './ui/footer';
 
+
 // services 
 import Blockchain from "./pages/Blockchain"
 import Montessori from "./pages/Montessori"
@@ -19,6 +20,7 @@ import Skills from "./pages/Skills"
 // courses
 import Courses from "./pages/Courses"
 import CoursePreview from './pages/CoursePreview';
+import TutorialPage from './pages/TutorialPage';
 
 // payment success
 import Success from './pages/Success';
@@ -39,6 +41,7 @@ function App() {
               <Route path='/skills' element={<Skills />}/>
               <Route path='/montessori' element={<Montessori />}/>
               <Route path='/courses' element={<Courses />}/>
+              <Route path="/tutorial" element={<TutorialPage />} />
               <Route path="/courses/:courseId" element={<CoursePreview />} />
               <Route path='/success' element={<Success />}/>
             </Routes>
