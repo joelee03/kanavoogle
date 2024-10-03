@@ -52,9 +52,6 @@ const Navbar = () => {
           <Link to="/courses" className="ml-10 text-gray-800 no-underline hover:text-[#7AA647]">
             Courses
           </Link>
-          <Link to="/preview" className="ml-10 text-gray-800 no-underline hover:text-[#7AA647]">
-            Subscription
-          </Link>
         </div>
         <nav className="flex items-center">
           {currentUser ? (
