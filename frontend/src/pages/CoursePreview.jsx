@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
+import Button from '../ui/button';
 
 const CoursePreview = () => {
+
+  const navigate = useNavigate();
+
+  const handleNavigation = (route) => {
+    console.log('Navigating to:', route);
+      navigate(route); 
+  };
+
   const { courseId } = useParams(); // Get the course ID from the URL
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -42,7 +51,7 @@ const CoursePreview = () => {
   const learningOutcomes = course?.learningOutcomes || [];
 
   return (
-    <div className="container h-[100vh] mx-auto p-4">
+    <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">{course.name}</h1>
       <p className="text-xl mb-6">{course.caption}</p>
       <div className='w-200 h-200 mb-10'>
@@ -63,7 +72,14 @@ const CoursePreview = () => {
       <h3 className="text-xl font-semibold mb-4">Price: ${course.price}</h3>
       <p className="text-lg font-semibold mb-4">Duration: {course.duration} hours</p>
 
-      <button className="bg-blue-500 text-white px-4 py-2 rounded">Purchase Course</button>
+      <Button
+            variant="primary"
+            size="lg"
+            onClick={() => handleNavigation('/courses//html')}
+            className="w-full p-3 rounded-full text-white items-center justify-center hover:bg-[#7AA647]"
+          >
+            Enroll
+      </Button>
     </div>
   );
 };

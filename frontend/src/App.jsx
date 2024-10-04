@@ -22,6 +22,7 @@ import CoursePreview from './pages/CoursePreview';
 
 // payment success
 import Success from './pages/Success';
+import LearnHTML from './pages/LearnHTML';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
               <Route path='/skills' element={<Skills />}/>
               <Route path='/montessori' element={<Montessori />}/>
               <Route path='/courses' element={<Courses />}/>
+              <Route path="/courses//html" element={<LearnHTML />} />
               <Route path="/courses/:courseId" element={<CoursePreview />} />
               <Route path='/success' element={<Success />}/>
             </Routes>
