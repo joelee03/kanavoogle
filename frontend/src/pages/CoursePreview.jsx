@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../firebase/firebase';
+import { db, auth } from '../firebase/firebase'; // Ensure auth is imported
+import { useAuth } from '../authentication/AuthContext'; // Import the AuthContext
 import Button from '../ui/button';
 
 const CoursePreview = () => {
-
+  const { currentUser } = useAuth(); // Get the current user from AuthContext
   const navigate = useNavigate();
-
-  const handleNavigation = (route) => {
-    console.log('Navigating to:', route);
-      navigate(route); 
-  };
-
   const { courseId } = useParams(); // Get the course ID from the URL
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -38,6 +33,19 @@ const CoursePreview = () => {
 
     fetchCourse();
   }, [courseId]);
+
+  const handleNavigation = () => {
+    if (!currentUser) {
+      // If the user is not logged in, navigate them to the signup page
+      navigate('/signup');
+    } else if (currentUser && !auth.currentUser) {
+      // If the user exists but is not authenticated, navigate them to login page
+      navigate('/login');
+    } else {
+      // If the user is logged in, navigate to the course enrollment page
+      navigate(`/courses//html`);
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -75,7 +83,7 @@ const CoursePreview = () => {
       <Button
             variant="primary"
             size="lg"
-            onClick={() => handleNavigation('/courses//html')}
+            onClick={handleNavigation} // Use the new handleNavigation logic here
             className="w-full p-3 rounded-full text-white items-center justify-center hover:bg-[#7AA647]"
           >
             Enroll
@@ -85,4 +93,3 @@ const CoursePreview = () => {
 };
 
 export default CoursePreview;
-
