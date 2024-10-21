@@ -1,24 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { loadStripe } from '@stripe/stripe-js';
 import { doc, getDoc } from 'firebase/firestore';
-import { db, auth } from '../firebase/firebase'; // Ensure auth is imported
-import { useAuth } from '../authentication/AuthContext'; // Import the AuthContext
+import { db, auth } from '../firebase/firebase'; 
+import { useAuth } from '../authentication/AuthContext'; 
 import Button from '../ui/button';
+
+const stripePromise = loadStripe('pk_test_51PrZbhRqe8PxoiRo43fHJ5qr43hE1S6QP2LQuBzfLOKc0lkZS1tNSlyEpqirLSO1lbDrVYDSs3G5WZEMBVIqB3NE00IpwOvTZq');
 
 const CoursePreview = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
-  const handleNavigation = () => {
+  const handleCheckout = async (mode) => {
     if (!currentUser) {
-      // If the user is not logged in, navigate them to the signup page
-      navigate('/signup');
-    } else if (currentUser && !auth.currentUser) {
-      // If the user exists but is not authenticated, navigate them to login page
-      navigate('/login');
-    } else {
-      // If the user is logged in, navigate to the course enrollment page
-      navigate(`/courses//html`);
+      navigate('/login'); // Redirect to login if user is not authenticated
+      return;
+    }
+    const stripe = await stripePromise;
+
+    const response = await fetch('http://localhost:5050/api/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ mode }),
+    });
+
+    const { sessionId } = await response.json();
+
+    // Redirect to Stripe Checkout
+    const { error } = await stripe.redirectToCheckout({ sessionId });
+
+    if (error) {
+      console.error('Stripe checkout error:', error);
     }
   };
 
@@ -84,7 +99,7 @@ const CoursePreview = () => {
       <Button
             variant="primary"
             size="lg"
-            onClick={handleNavigation}
+            onClick={() => handleCheckout('payment')}
             className="w-full p-3 rounded-full text-white items-center justify-center hover:bg-[#7AA647]"
           >
             Enroll

@@ -5,11 +5,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
 const bodyParser = require('body-parser');
-const User = require('./models/userModel')
+
 
 // Import API
 const inquiryRoutes = require('./views/inquiry');
-const userRoutes = require('./views/user');
 
 // Import Stripe
 const Stripe = require('stripe');
@@ -28,40 +27,25 @@ app.use(cors({
 
 // Routes
 app.use('/api/inquiry', inquiryRoutes);
-app.use('/api/user', userRoutes);
 
 app.post('/api/create-checkout-session', async (req, res) => {
     try {
         const { mode, client_reference_id } = req.body;
 
         let session;
-        if (mode === 'subscription') {
+        if (mode === 'payment') {
             session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 line_items: [
                     {
-                        price: 'price_1PrenKRqe8PxoiRoAzsNKBjA', // Subscription product price ID
-                        quantity: 1,
-                    },
-                ],
-                mode: 'subscription',
-                client_reference_id: client_reference_id,
-                success_url: 'http://localhost:5173/success',
-                cancel_url: 'http://localhost:5173/preview',
-            });
-        } else if (mode === 'payment') {
-            session = await stripe.checkout.sessions.create({
-                payment_method_types: ['card'],
-                line_items: [
-                    {
-                        price: 'price_1PrvXERqe8PxoiRoTl0JPDKm', // One-time purchase product price ID
+                        price: 'price_1QCFmvRqe8PxoiRoVTwmdWLw', // One-time purchase product price ID
                         quantity: 1,
                     },
                 ],
                 mode: 'payment',
                 client_reference_id: client_reference_id,
                 success_url: 'http://localhost:5173/success',
-                cancel_url: 'http://localhost:5173/preview',
+                cancel_url: 'http://localhost:5173/courses/digitalskills',
             });
         }
 
