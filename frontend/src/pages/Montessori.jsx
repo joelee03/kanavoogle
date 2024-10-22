@@ -61,7 +61,9 @@ function Montessori() {
       <SampleMontessori />
 
       {/* Inquiry Form */}
-      <InquiryForm />
+      <div className="my-40">
+        <InquiryForm />
+      </div>
     </div>
   );
 }
