@@ -102,7 +102,6 @@ app.post('/webhook', bodyParser.raw({ type: 'application/json' }), async (req, r
 });
   
 
-
 // Database connection
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
