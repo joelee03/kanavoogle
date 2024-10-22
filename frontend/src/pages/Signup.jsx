@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate, Link } from 'react-router-dom';
-import { auth } from '../firebase/firebase';
+import { auth, db } from '../firebase/firebase'; // Import Firestore instance
+import { doc, setDoc } from 'firebase/firestore'; // Firestore functions
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -17,8 +18,17 @@ const Signup = () => {
 
     try {
       // Sign up the user with Firebase Authentication
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigate('/'); // Navigate to the homepage or any other page on success
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user; // Get the created user
+
+      // Store the user's information in Firestore
+      await setDoc(doc(db, 'users', user.uid), {
+        uid: user.uid,
+        email: user.email,
+        hasAccess: false,
+      });
+
+      navigate('/'); // Navigate to the homepage or another page on success
     } catch (error) {
       setError(error.message); // Set any error message
     } finally {
@@ -60,7 +70,7 @@ const Signup = () => {
             {isLoading ? 'Signing up...' : 'Sign Up'}
           </button>
           <div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
+            Already have an account?{' '}
             <Link to="/login" className="underline">
               Sign in
             </Link>

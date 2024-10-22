@@ -14,6 +14,7 @@ const CoursePreview = () => {
 
   const handleCheckout = async (mode) => {
     if (!currentUser) {
+      alert('Please log in to enroll.');
       navigate('/login'); // Redirect to login if user is not authenticated
       return;
     }
@@ -24,7 +25,10 @@ const CoursePreview = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ mode }),
+      body: JSON.stringify({
+        mode: 'payment',
+        client_reference_id: currentUser.uid, // Firebase UID passed here
+      }),
     });
 
     const { sessionId } = await response.json();

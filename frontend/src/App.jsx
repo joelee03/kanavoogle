@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import { AuthProvider } from './authentication/AuthContext';
-import { UserProvider} from './authentication/UserContext';
 
 // pages & components
 import Home from "./pages/Home"
@@ -29,7 +28,6 @@ function App() {
     <div>
       <BrowserRouter>
         <AuthProvider>
-          <UserProvider>
             <Navbar />
             <Routes>
               <Route path='/' element={<Home />}/>
@@ -45,7 +43,6 @@ function App() {
               <Route path='/success' element={<Success />}/>
             </Routes>
             <Footer />
-          </UserProvider>
         </AuthProvider>
       </BrowserRouter>
     </div>

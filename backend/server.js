@@ -5,14 +5,17 @@ const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
 const bodyParser = require('body-parser');
-
-
+const admin = require('firebase-admin');
 // Import API
 const inquiryRoutes = require('./views/inquiry');
 
 // Import Stripe
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
+admin.initializeApp({
+    credential: admin.credential.applicationDefault(), // Ensure credentials are set up properly
+});
 
 // Create Express app
 const app = express();
@@ -58,86 +61,55 @@ app.post('/api/create-checkout-session', async (req, res) => {
     }
 });
 
-// Webhook endpoint for Stripe to notify about payment status
-app.post('/webhook', bodyParser.raw({ type: 'application/json' }), async (req, res) => {
-    const sig = req.headers['stripe-signature'];
-    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+// Middleware to parse Stripe's raw body for webhooks
+app.use('/webhook', bodyParser.raw({ type: 'application/json' }));
 
-    let event;
+// Webhook handler for Stripe events
+app.post('/webhook', async (req, res) => {
+  const sig = req.headers['stripe-signature'];
+  let event;
+
+  try {
+    // Verify Stripe event signature
+    event = stripe.webhooks.constructEvent(
+      req.body,
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+  } catch (err) {
+    console.error('Webhook signature verification failed:', err.message);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  // Process checkout.session.completed event
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
+    const firebaseUid = session.client_reference_id; // Firebase UID from frontend
+
+    console.log(`Payment completed for user: ${firebaseUid}`);
+
     try {
-        event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-    } catch (err) {
-        console.error('⚠️  Webhook signature verification failed.', err.message);
-        return res.status(400).send(`Webhook Error: ${err.message}`);
+      // Update the Firestore document to grant access
+      const userRef = admin.firestore().collection('users').doc(firebaseUid);
+      await userRef.set(
+        {
+          hasAccess: true, // Grant access to the course
+        },
+        { merge: true } // Merge with existing data
+      );
+
+      console.log(`Access granted for user: ${firebaseUid}`);
+      res.json({ received: true });
+    } catch (error) {
+      console.error('Error updating Firestore:', error);
+      res.status(500).send('Error updating Firestore');
     }
-
-    console.log('Received event:', event.type);
-
-    switch (event.type) {
-        case 'checkout.session.completed':
-            console.log("Payment success");
-            const session = event.data.object;
-            const userId = session.client_reference_id;
-
-            if (!userId) {
-                console.error('User ID not found in the session.');
-                return res.status(400).json({ error: 'User ID missing from session' });
-            }
-
-            try {
-                // Default to one-month subscription unless identified as a lifetime subscription
-                let subscriptionStartDate = new Date();
-                let subscriptionEndDate = new Date();
-                let subscriptionActive = true;
-
-                // Retrieve line items from the session to determine the price ID
-                const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
-                
-                if (!lineItems.data || lineItems.data.length === 0) {
-                    throw new Error('No line items found in the session.');
-                }
-
-                const priceId = lineItems.data[0].price.id;
-
-                // Check which subscription type was purchased
-                if (priceId === 'price_1PrenKRqe8PxoiRoAzsNKBjA') {
-                    // One-month subscription
-                    subscriptionEndDate.setMonth(subscriptionEndDate.getMonth() + 1);
-                } else if (priceId === 'price_1PrvXERqe8PxoiRoTl0JPDKm') {
-                    // Lifetime subscription: No end date
-                    subscriptionEndDate = null;
-                } else {
-                    throw new Error('Unknown subscription type');
-                }
-
-                // Update the user's subscription status in your database
-                const updatedUser = await User.findByIdAndUpdate(userId, {
-                    subscriptionActive: subscriptionActive,
-                    subscriptionStartDate: subscriptionStartDate,
-                    subscriptionEndDate: subscriptionEndDate
-                }, { new: true });
-
-                if (!updatedUser) {
-                    console.error(`User ${userId} not found.`);
-                    return res.status(404).json({ error: 'User not found' });
-                }
-
-                console.log(`User ${userId} subscription activated!`);
-            } catch (err) {
-                console.error('Error updating user subscription:', err);
-                return res.status(500).json({ error: 'Failed to update user subscription' });
-            }
-            break;
-
-        default:
-            // Handle unexpected event types
-            console.log(`Unhandled event type ${event.type}.`);
-            break;
-    }
-
-    // Return a 200 response to acknowledge receipt of the event
-    res.json({ received: true });
+  } else {
+    res.status(400).end();
+  }
 });
+  
+
 
 // Database connection
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true })
