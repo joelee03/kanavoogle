@@ -25,3 +25,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+/backend/kanavoogle-23e39-firebase-adminsdk-k9eqr-309219175f.json

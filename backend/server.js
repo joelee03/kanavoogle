@@ -5,7 +5,6 @@ const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
 const bodyParser = require('body-parser');
-const admin = require('firebase-admin');
 // Import API
 const inquiryRoutes = require('./views/inquiry');
 
@@ -13,12 +12,57 @@ const inquiryRoutes = require('./views/inquiry');
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
+var admin = require("firebase-admin");
+
+var serviceAccount = require(process.env.PRIVATE_KEY)
+
 admin.initializeApp({
-    credential: admin.credential.applicationDefault(), // Ensure credentials are set up properly
+  credential: admin.credential.cert(serviceAccount)
 });
+
 
 // Create Express app
 const app = express();
+
+// Use bodyParser.raw() for Stripe webhooks to preserve the request body
+app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+  const sig = req.headers['stripe-signature']; // Get the Stripe signature
+  let event;
+
+  try {
+    // Construct the event using the raw body and signature
+    event = stripe.webhooks.constructEvent(
+      req.body, // Must be raw body
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+  } catch (err) {
+    console.error('Webhook signature verification failed:', err.message);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  // Process the checkout session completed event
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
+    const firebaseUid = session.client_reference_id; // Firebase UID
+
+    console.log(`Payment completed for user: ${firebaseUid}`);
+
+    try {
+      // Grant course access in Firestore
+      const userRef = admin.firestore().collection('users').doc(firebaseUid);
+      await userRef.set({ hasAccess: true }, { merge: true });
+
+      console.log(`Access granted for user: ${firebaseUid}`);
+      res.json({ received: true });
+    } catch (error) {
+      console.error('Error updating Firestore:', error);
+      res.status(500).send('Error updating Firestore');
+    }
+  } else {
+    res.status(400).end();
+  }
+});
 
 // Middleware
 app.use(morgan('dev'));
@@ -61,46 +105,6 @@ app.post('/api/create-checkout-session', async (req, res) => {
     }
 });
 
-// Use bodyParser.raw() for Stripe webhooks to preserve the request body
-app.post('/webhook', bodyParser.raw({ type: 'application/json' }), async (req, res) => {
-  const sig = req.headers['stripe-signature']; // Get the Stripe signature
-  let event;
-
-  try {
-    // Construct the event using the raw body and signature
-    event = stripe.webhooks.constructEvent(
-      req.body, // Must be raw body
-      sig,
-      process.env.STRIPE_WEBHOOK_SECRET
-    );
-  } catch (err) {
-    console.error('Webhook signature verification failed:', err.message);
-    return res.status(400).send(`Webhook Error: ${err.message}`);
-  }
-
-  // Process the checkout session completed event
-  if (event.type === 'checkout.session.completed') {
-    const session = event.data.object;
-    const firebaseUid = session.client_reference_id; // Firebase UID
-
-    console.log(`Payment completed for user: ${firebaseUid}`);
-
-    try {
-      // Grant course access in Firestore
-      const userRef = admin.firestore().collection('users').doc(firebaseUid);
-      await userRef.set({ hasAccess: true }, { merge: true });
-
-      console.log(`Access granted for user: ${firebaseUid}`);
-      res.json({ received: true });
-    } catch (error) {
-      console.error('Error updating Firestore:', error);
-      res.status(500).send('Error updating Firestore');
-    }
-  } else {
-    res.status(400).end();
-  }
-});
-  
 
 // Database connection
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true })
