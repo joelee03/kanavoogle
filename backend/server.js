@@ -61,18 +61,15 @@ app.post('/api/create-checkout-session', async (req, res) => {
     }
 });
 
-// Middleware to parse Stripe's raw body for webhooks
-app.use('/webhook', bodyParser.raw({ type: 'application/json' }));
-
-// Webhook handler for Stripe events
-app.post('/webhook', async (req, res) => {
-  const sig = req.headers['stripe-signature'];
+// Use bodyParser.raw() for Stripe webhooks to preserve the request body
+app.post('/webhook', bodyParser.raw({ type: 'application/json' }), async (req, res) => {
+  const sig = req.headers['stripe-signature']; // Get the Stripe signature
   let event;
 
   try {
-    // Verify Stripe event signature
+    // Construct the event using the raw body and signature
     event = stripe.webhooks.constructEvent(
-      req.body,
+      req.body, // Must be raw body
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
@@ -81,22 +78,17 @@ app.post('/webhook', async (req, res) => {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // Process checkout.session.completed event
+  // Process the checkout session completed event
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const firebaseUid = session.client_reference_id; // Firebase UID from frontend
+    const firebaseUid = session.client_reference_id; // Firebase UID
 
     console.log(`Payment completed for user: ${firebaseUid}`);
 
     try {
-      // Update the Firestore document to grant access
+      // Grant course access in Firestore
       const userRef = admin.firestore().collection('users').doc(firebaseUid);
-      await userRef.set(
-        {
-          hasAccess: true, // Grant access to the course
-        },
-        { merge: true } // Merge with existing data
-      );
+      await userRef.set({ hasAccess: true }, { merge: true });
 
       console.log(`Access granted for user: ${firebaseUid}`);
       res.json({ received: true });

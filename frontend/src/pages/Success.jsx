@@ -5,7 +5,7 @@ function Success() {
     const navigate = useNavigate();
 
     const handleViewCourses = () => {
-      navigate('/courses');
+      navigate('/courses//html');
     };
   
     return (
