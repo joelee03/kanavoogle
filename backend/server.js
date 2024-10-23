@@ -85,7 +85,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
                 payment_method_types: ['card'],
                 line_items: [
                     {
-                        price: 'price_1QCFmvRqe8PxoiRoVTwmdWLw', // One-time purchase product price ID
+                        price: process.env.PRICE_ID, // One-time purchase product price ID
                         quantity: 1,
                     },
                 ],
